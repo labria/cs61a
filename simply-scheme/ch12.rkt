@@ -19,3 +19,14 @@
       '()
       (se (second sent)
           (evens (bf (bf sent))))))
+
+(define (downup wd)
+  (if (<= (count wd) 1)
+      (se wd)
+      (se wd (downup (bl wd)) wd)))
+
+(define (down wd)
+  (if (empty? wd)
+      '()
+      (se wd
+          (down (bl wd)))))

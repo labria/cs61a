@@ -1,0 +1,90 @@
+* You need a runnable copy of the solutions along with tester.scm
+
+Here is how you would use it:
+
+First, load the student's solution. Then, load the tester file.
+After this....
+
+STk> (record-session 'step-test)
+Recording session step-test
+? to blah
+-> print 2
+-> print 3
+-> end
+? blah
+2
+3
+? step "blah
+? blah
+print 2>>>
+2
+print 3>>>
+3
+? unstep "blah
+? blah
+2
+3
+?
+? bye
+Session recorded under name step-test
+okay
+
+;; BYE ends the session. tester.scm adds BYE as a primitive and redefines
+;; driver-loop
+
+To run a saved test, you use run-test:
+
+STk> (run-test 'step-test)
+? to blah
+-> print 2
+-> print 3
+-> end
+? blah
+2
+3
+? step "blah
+? blah
+print 2>>>
+2
+print 3>>>
+3
+? unstep "blah
+? blah
+2
+3
+?
+#t
+
+Now, you can record many sessions (each testing a different thing), and
+save them to a file:
+
+STk> (save-tests "my-tests")
+okay
+
+And of course now you can load the tests whenever you want and run them.
+
+So if your tests are in "my-tests", and you want to run them on a
+student's logo project:
+
+STk> (load "tester")
+okay
+STk> (rat-file "my-tests")  ;; rat = run all tests
+Running test ____
+...
+
+Running test ____
+...
+
+
+...
+Passed ___ of  ___ tests
+okay
+
+This will save you the trouble of typing in all the tests again and again.
+But of course you, need to look at the transcripts to make sure it didn't
+fail because of the student not outputting exactly the same messages (or
+if the student puts in debugs)
+
+
+One set of tests have been recorded in the file "part2-tests", but 
+these are not complete.

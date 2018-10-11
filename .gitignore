@@ -34,7 +34,3 @@ TAGS
 
 # coredumps
 *.core
-
-# grader files
-*-tests*
-*grader*

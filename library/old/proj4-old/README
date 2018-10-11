@@ -1,0 +1,291 @@
+Sanity Check Fall 2000
+Project 4
+Erik Klavon / erik@eriq.org
+
+BACKGROUND
+
+The sanity check is provided as an aid to you in debugging your
+project. Its use is not required, nor will the readers use it in
+determining your grade. The sanity check _will_not_ be run when you
+submit your project; you can run it yourself if you like (more on this
+later). Be sure to follow whatever submissions guidelines you have
+been given by your instructors to submit your project.
+
+REQUIREMENTS
+
+First, you need to have the following files:
+
+logo.scm
+  This file should contain any modifications and original code
+from the file ~cs61a/lib/logo.scm. This file should be the same one
+you load when you run the project yourself.
+
+logo-meta.scm
+  This file should contain any modifications and original code
+from the file ~cs61a/lib/logo-meta.scm. This file should be the same one
+you load when you run the project yourself.
+
+tests
+  Copy this file from ~cs61a/lib/proj4/. This file contains some
+example tests to run on your project. Any tests you wish to add should
+be added to this file. More on this later.
+
+test-results.ref
+  Copy this file from ~cs61a/lib/proj4/. This file contains the
+correct output obtained from running each test in tests on a correct
+version of logo (such as UCB logo). For each test you add to tests,
+you must also add the correct output to test-results.ref. More about
+this later.
+
+Once you have all of these files named correctly, put them in a
+directory. You should then change directories so that when you list the
+directory (using ls), all the files mentioned above are shown.
+
+RESULTS
+
+The output from the sanity check will be similar as that of the
+previous projects. Running the sanity check creates three files in the
+working directory:
+
+loading-errors
+  A list of all errors that were generated as a result of the sanity
+check loading your code. 
+
+test-errors
+  A list of all errors that were generated as a result of the sanity
+check testing your code.
+
+test-results
+  All of the results that your program printed in response to the input
+in the file tests.
+
+These files are created so that you may examine this information
+without rerunning the sanity check. You may remove these files at any time.
+
+The sanity check for project 4 has three phases. The first checks to
+see if your code loads without generating an error. The second starts
+your logo interpreter and gives it each of the lines in the file tests
+one at a time. All output from these tests is written to the file
+test-results. The third phase runs diff on test-results and
+test-results.ref. This checks to see if the output generated from your
+logo interpreter differs from the output in the reference file
+(test-results.ref).
+
+RUNNING THE SANITY CHECK
+
+To run the sanity check, you must be in the directory where the
+required files are located. You can then run the sanity check by typing
+at the prompt:
+
+test-proj4
+
+This will run the sanity check. All of the files which make the sanity
+check work are available for your inspection in the directory
+~cs61a/lib/proj4/. 
+
+NOTE: Passing the sanity check does not guarantee that you will get full
+credit on the project. The sanity check doesn't check for data
+abstraction violations, but the readers do.
+
+ADDING YOUR OWN TESTS
+
+By automating your testing, you can be sure that your code is
+consistently tested without having to retype all of the tests each
+time. The tests given in the sample tests file
+(~cs61a/lib/proj4/tests) are just a sample. You are encouraged to add
+all of your tests to this file and use the sanity check to automate
+your testing.
+
+To add a test, place what you would type to the logo interpreter in
+the file tests before the line containing just "bye". For example, to
+test "print sum 2 3" your file would contain: 
+
+(load "~cs61a/lib/obj.scm")
+(load "logo.scm")
+(load "logo-meta.scm")
+(initialize-logo)
+print sum 2 3
+bye
+(exit)
+
+The load commands load your code, (initialize-logo) initializes
+logo. print sum 2 3 is then passed in to the interpreter. The bye
+command exits logo, the (exit) command exits stk.
+
+If you try to run the sanity check, you'll get an error. The reason
+for this is that you haven't made any changes to the test-results.ref
+file. Remember that the result of running the above test is compared
+against this file. print sum 2 3 should generate a 5, so we have to add
+that to the file:
+
+************************
+*** Welcome to cs61a ***
+************************
+
+Loading in berkeley.scm
+
+? 5
+?
+Thank you for using Logo.
+Have a nice day.
+
+Since we are using diff to compare the files, the have to almost
+exactly the same, so we need of of the "Welcome to ..." stuff. The
+important thing here is that there is a logo prompt, followed by the
+answer for our test. Everything else should stay the way it is.
+
+Lets add another test of a function. Here is the tests file:
+
+(load "~cs61a/lib/obj.scm")
+(load "logo.scm")
+(load "logo-meta.scm")
+(initialize-logo)
+print sum 2 3
+to factorial :n
+if :n=0 [output 1]
+output :n * factorial :n-1
+end
+print factorial 5
+print factorial 4
+bye
+(exit)
+
+And the test-results.ref file:
+
+************************
+*** Welcome to cs61a ***
+************************
+
+Loading in berkeley.scm
+
+? 5
+? -> -> -> ? 120
+? 24
+?
+Thank you for using Logo.
+Have a nice day.
+
+Note that there are no newlines in-between the prompts (the -> is the
+prompt given when defining a procedure). The prompt for the next
+command comes after the last ->, followed by the result. Note that the
+next command is on a new line.
+
+The files ~cs61a/lib/proj4/tests and ~cs61a/lib/proj4/test-results.ref
+contain more samples of different tests and their output. You are
+welcome to use these files and add your own tests to them.
+
+DEBUGGING
+
+These hints on debugging are organized around the different phases of
+the tests. Here is the error you get if your code fails to load:
+
+Your code generated an error while loading.
+Please check it to make sure it loads correctly.
+All errors generated are in the file loading-errors.
+
+This error is generated when the sanity check could not load your
+code. Examine the file "loading-errors" (at the prompt, type "less
+loading-errors") to find out what errors stk encountered. For example,
+here is the error that caused the above failure:
+
+*** Error at line 4 of file ./logo.scm:
+    unbound variable: klsadjfklasjdklfak
+Current eval stack:
+__________________
+  0    klsadjfklasjdklfak
+  1    (load "logo.scm")
+
+Using these errors, you should be able to figure out where the problem
+lies. Remember that the following files are loaded in order:
+
+~cs61a/lib/obj.scm
+logo.scm
+logo-meta.scm
+
+Try loading these files in a fresh copy of stk to reproduce the
+error. NOTE: Simply loading these files should _not_ start the logo
+interpreter!
+
+Here is the error you get if your code generates an error while being
+tested:
+
+Your code loaded without any errors.
+
+
+Your code generated an error while running the tests.
+Please further test your project to locate any errors.
+All errors generated are in the file test-errors.
+
+This error is generated when the sanity check encounters an error
+while trying to test your code. Examine the file "test-errors" (at the
+prompt, type "less loading-errors") to find out what errors where
+encountered. Note that the first error is the one you want to pay
+attention to. All of the other errors come from the sanity check
+thinking its talking to logo when in fact its talking to Scheme.
+
+If your tests run but you don't get the same output that as in our
+test-results.ref file, the following error is generated:
+
+*** test-results        Mon Nov 13 13:20:54 2000
+--- test-results.ref    Sat Nov 11 14:48:51 2000
+***************
+*** 12,27 ****
+  ? You don't say what to do with   3
+  ? hi there
+  ? hello
+  ? a+b
+  ? +
+! ? -> -> -> ? 1.875
+  ? 04
+  ? 4
+  ? 11
+  ? 9
+! ? 5.75
+  ? ? 27
+  ? -> -> -> ? 25
+  ? 26
+  ? 
+  Thank you for using Logo.
+--- 12,27 ----
+  ? You don't say what to do with 3
+  ? hi there
+  ? hello
+  ? a+b
+  ? +
+! ? -> -> -> ? 120
+  ? 04
+  ? 4
+  ? 11
+  ? 9
+! ? 17
+  ? ? 27
+  ? -> -> -> ? 25
+  ? 26
+  ? 
+  Thank you for using Logo.
+Your code failed one of the tests.
+The above output is a diff of the files test-results and 
+ test-results.ref. See the README for more info.
+
+Lines which begin with a ! are lines for which your program's output
+(the first listing) differs from that in test-results.ref (the second
+listing). Note that you are given several lines around those that do
+not match. Start debugging by typing in the code for which your
+program did not pass and observing the error first hand.
+
+One other possible error you may encounter is:
+
+Time limit exceeded while running the tests.
+Your code was terminated, most likely due to an infinite loop.
+
+The sanity check has an upper limit on the amount of time it will run
+before it terminates your program. Try typing in your tests manually
+to see what may be causing the infinite loop. If your test just takes
+a really long time, don't include it in the automated testing. If
+you've included a lot of tests, running all of them may be taking
+longer than the time limit. Try reducing the number of your tests or
+decreasing the time that they take.
+
+
+
+
