@@ -1,5 +1,7 @@
 # Berkeley CS61AS
 
+This is my attempt at Berkeley's self-paced CS61AS course based on SICP and using Racket (for most of the course). This includes the homework and projects from the self-paced version as well as Brian Harvey's lectures and notes from his final semester at Berkeley.
+
 ## Course Outline
 
 Lesson | Topic (Lecture Video) | Reading | Notes | HW
@@ -32,10 +34,20 @@ Lesson | Topic (Lecture Video) | Reading | Notes | HW
 1. [Set up Racket](https://docs.google.com/document/d/11EL0fBeqZzLk3Ij8WDQK48eLMRfsT0ywksiJCPMyT58/edit)
 2. [Set up STk](https://docs.google.com/document/d/1SMi4VZtL308zscmrpz5nClO1Kg0ZnDXc4R1wMBTsgsE/edit)
 
+## Grader
+
+```shell
+cd homework
+racket -tm grader.rkt -- tests/hwX-tests.rkt hwX.rkt <procedure name>
+```
+
+Note: Replace "hwX-tests.rkt" and "hwX.rkt" with the actual filenames. Only include the procedure name if you want to check an individual procedure; otherwise the grader will check the whole program.
+
 ## Resources
 
 * [SICP](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start)
 * [Simply Scheme](https://people.eecs.berkeley.edu/~bh/ss-toc2.html)
 * [CS61AS Homepage](https://berkeley-cs61as.github.io/index.html)
+* [Racket Documentation](https://docs.racket-lang.org/)
 * [SICP Racket Documentation](https://docs.racket-lang.org/sicp-manual/index.html)
 * [Simply Scheme Racket Documentation](https://docs.racket-lang.org/manual@simply-scheme/index.html)
