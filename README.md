@@ -4,8 +4,6 @@ This is my attempt at Berkeley's self-paced CS61AS course based on SICP and usin
 
 ## Course Outline
 
-<center>
-
 Lesson | Topic (Lecture Video) | Reading | Notes | HW
 ------ | --------------------- | ------- | ----- | --
 [0-1](https://berkeley-cs61as.github.io/textbook/lesson-0.1-intro.html) | Introduction to Racket and CS61AS | | | [HW](https://berkeley-cs61as.github.io/textbook/homework-0.1.html) |
@@ -30,8 +28,6 @@ Lesson | Topic (Lecture Video) | Reading | Notes | HW
 | | [Project 4: Schython](https://berkeley-cs61as.github.io/textbook/schython.html) | | 
 [13](https://berkeley-cs61as.github.io/textbook/lesson-13-intro.html) | Logic Programming ([42](https://archive.org/details/ucberkeley_webcast_JIMS_mspmug), [43](https://archive.org/details/ucberkeley_webcast_i5XtLVwTcZY)) | [4.4.1-3](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-29.html#%_sec_4.4) | [Notes](http://www-inst.eecs.berkeley.edu/~cs61as/reader/notes.pdf#page=102) | [HW](https://berkeley-cs61as.github.io/textbook/homework-13.html)
 [14](https://berkeley-cs61as.github.io/textbook/lesson-14-intro.html) | Client-server Programming ([30](https://archive.org/details/ucberkeley_webcast_Lr4zVJPpMrM))<br>Concurrency ([31](https://archive.org/details/ucberkeley_webcast_tfTD0B8dX7I), [32](https://archive.org/details/ucberkeley_webcast_a_qhlzmXqAo))<br>MapReduce ([38](https://archive.org/details/ucberkeley_webcast_OVbHFr6SG_8), [39](https://archive.org/details/ucberkeley_webcast_tlABAGE-Tvc)) | [3.4](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-23.html#%_sec_3.4) | [Notes](http://inst.eecs.berkeley.edu/~cs61as/reader/notes.pdf#page=65)<br>[MR Pt. 1](http://www-inst.eecs.berkeley.edu/~cs61as/reader/notes.pdf#page=24)<br>[MR Pt. 2](http://www-inst.eecs.berkeley.edu/~cs61as/reader/notes.pdf#page=84) | [HW](https://berkeley-cs61as.github.io/textbook/homework-14.html)
-
-</center>
 
 ## Environment
 
